@@ -1,0 +1,23 @@
+body {
+    position: relative;
+    /*background: #455765;*/
+    cursor: none;
+    height: 100vh;
+}
+
+#cursor {
+    position: fixed;
+
+    background: #fff0;
+    border-radius: 30px;
+    border: 2px solid #4fe3ce;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    /*真ん中にくるようにマイナスマージンで調整*/
+    z-index: 2;
+    /*一番手前に来るように*/
+    pointer-events: none;
+    /*クリックできなくなるのを防ぐため。noneで対応*/
+    opacity: 0;
+}
