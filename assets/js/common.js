@@ -1,4 +1,5 @@
 window.onload = () => {
+  document.head.innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1">`;
   document.body.innerHTML = `
   <header>
     <div>
@@ -35,12 +36,14 @@ window.onload = () => {
   }
 
   window.addEventListener('scroll', () => {
-    let scrollTop = document.documentElement.scrollTop;
-    let sliderHeight = document.getElementById('slider').getBoundingClientRect().height;
-    if (scrollTop >= sliderHeight - 60) {
-      document.getElementsByTagName('header')[0].style.height = '40px';
-    } else {
-      document.getElementsByTagName('header')[0].style.height = '60px';
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+    let header = document.getElementsByTagName('header')[0];
+    if (header) {
+      if (scrollTop > 100) {
+        header.style.height = '40px';
+      } else {
+        header.style.height = '60px';
+      }
     }
   });
 
