@@ -1,4 +1,4 @@
-$(function(){
+/* $(function(){
   
   //カーソル要素の指定
   var cursor=$("#cursor");
@@ -34,4 +34,53 @@ $(function(){
       "left":x+"px"
     });
   });
+});*/
+
+$(function () {
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+
+    let stalkerX = mouseX;
+    let stalkerY = mouseY;
+
+    $(window).on("mousemove", function (e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animate() {
+
+        cursorX += (mouseX - cursorX) * 0.25;
+        cursorY += (mouseY - cursorY) * 0.25;
+
+        stalkerX += (cursorX - stalkerX) * 0.12;
+        stalkerY += (cursorY - stalkerY) * 0.12;
+
+        $("#cursor_main").css({
+            left: cursorX + "px",
+            top: cursorY + "px"
+        });
+
+        $("#cursor_stalker").css({
+            left: stalkerX + "px",
+            top: stalkerY + "px"
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    $(document).on("mouseenter", ".clickable", function () {
+    $("#cursor_main").addClass("cursor-hover");
+});
+
+$(document).on("mouseleave", ".clickable", function () {
+    $("#cursor_main").removeClass("cursor-hover");
+});
+
 });
