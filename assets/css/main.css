@@ -1,25 +1,98 @@
+* {
+    cursor: none;
+}
 body {
     position: relative;
     /*background: #455765;*/
-    cursor: none;
-    height: 100vh;
+    min-height: 100vh;
 }
 
-#cursor,
-#cursor_sub {
+#cursor_main,
+#cursor_stalker {
     position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    
+    z-index: 9000;
 
-    background: #fff0;
+    
+
+    /*background: #fff0;
     border-radius: 30px;
     border: 2px solid #4fe3ce;
     width: 40px;
     height: 40px;
     margin: -20px 0 0 -20px;
-    /*真ん中にくるようにマイナスマージンで調整*/
     z-index: 2;
-    /*一番手前に来るように*/
     pointer-events: none;
-    /*クリックできなくなるのを防ぐため。noneで対応*/
     opacity: 0;
+    */
+}
+#cursor_main {
+    /*width: 12px;
+    height: 12px;
+    background: #4fe3ce;
+    border-radius: 50%;*/
+    width: 40px;
+    height: 40px;
+}
+
+.cursor-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #4fe3ce;
+    border-radius: 50%;
+    left: 16px;
+    top: 16px;
+
+    transition:
+        transform 0.25s cubic-bezier(.22,1,.36,1),
+        opacity 0.25s;
+}
+
+.cursor-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+
+    transition: opacity 0.25s;
+}
+
+.cursor-lines line {
+    stroke: #4fe3ce;
+    stroke-width: 2;
+}
+
+.dot2,
+.dot3 {
+    opacity: 0;
+}
+
+.cursor-hover .dot1 {
+    transform: translate(-6px, 8px);
+}
+
+.cursor-hover .dot2 {
+    opacity: 1;
+    transform: translate(10px, 0px);
+}
+
+.cursor-hover .dot3 {
+    opacity: 1;
+    transform: translate(-6px, -8px);
+}
+
+.cursor-hover .cursor-lines {
+    opacity: 1;
+}
+
+#cursor_stalker {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #4fe3ce;
+    border-radius: 50%;
 }
 
